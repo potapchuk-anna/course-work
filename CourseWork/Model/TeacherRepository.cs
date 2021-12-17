@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,9 @@ namespace CourseWork.Model
         public override void DataGeneration(int numberOfData)
         {
             Random random = new Random();
-            List<Class> classes = context.Classes.ToList();
             for (int i = 0; i < numberOfData; i++)
             {
-                Class form = classes[random.Next(classes.Count)];
-                context.Students.Add(new Student()
+                context.Teachers.Add(new Teacher()
                 {
                     Name = GenerateString(random.Next(4, 8), random),
                     Surname = GenerateString(random.Next(4, 11), random),
@@ -49,10 +48,24 @@ namespace CourseWork.Model
             context.SaveChanges();
         }
 
-        public override void Update(ModelBase model)
+        public override void Update(ModelBase model, ModelBase newModel)
         {
-            context.Teachers.Update((Teacher)model);
+            var teacher = model as Teacher;
+            var newTeacher = newModel as Teacher;
+            teacher.Name = newTeacher.Name;
+            teacher.Surname = newTeacher.Surname;
+            context.Teachers.Update(teacher);
             context.SaveChanges();
+        }
+
+        public override ObservableCollection<ModelBase> Find(string parametr)
+        {
+            return new ObservableCollection<ModelBase>(GetTeachers(parametr));
+        }
+
+        List<Teacher> GetTeachers(string parametr)
+        {
+            return context.Teachers.Where(d => d.Id.ToString().StartsWith(parametr)||d.Name.StartsWith(parametr) || d.Surname.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
         }
     }
 }

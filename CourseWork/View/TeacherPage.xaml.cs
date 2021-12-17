@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CourseWork.Model;
 using CourseWork.ViewModel;
 
 
@@ -20,16 +21,16 @@ namespace CourseWork.View
     /// </summary>
     public partial class TeacherPage : Page
     {
-        public bool isGenerationClicked { get; private set; }
         public TeacherPage()
         {
             InitializeComponent();
-            DataContext = new TeacherViewModel(new Model.TeacherRepository(new Model.EducationalSystemContext()));
+            DataContext = new TeacherViewModel(new Model.TeacherRepository(EducationalSystemContext.Instance));
         }
 
         private void generate_Click(object sender, RoutedEventArgs e)
-        {           
-            isGenerationClicked = true;
+        {
+            //GenerateWindow generateWindow = new GenerateWindow();
+            //generateWindow.ShowDialog();
         }
 
     }

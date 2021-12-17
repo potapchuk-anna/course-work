@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CourseWork.Model
 {
-    class SubjectRepository:Repository
+   public class SubjectRepository:Repository
     {
         public SubjectRepository(EducationalSystemContext context) : base(context)
         {
@@ -49,10 +50,25 @@ namespace CourseWork.Model
             context.SaveChanges();
         }
 
-        public override void Update(ModelBase model)
+        public override void Update(ModelBase model, ModelBase newModel)
         {
-            context.Subjects.Update((Subject)model);
+            var subject = model as Subject;
+            var newSubject = newModel as Subject;
+            subject.Title = newSubject.Title;
+            subject.TeacherId = newSubject.TeacherId;
+            context.Subjects.Update(subject);
             context.SaveChanges();
+        }
+
+        public override ObservableCollection<ModelBase> Find(string parametr)
+        {
+            return new ObservableCollection<ModelBase>(GetSubjects(parametr));
+        }
+
+        public
+        List<Subject> GetSubjects(string parametr)
+        {
+            return context.Subjects.Where(d => d.Id.ToString().StartsWith(parametr)||d.Title.StartsWith(parametr) || d.Teacher.Name.StartsWith(parametr) || d.Teacher.Surname.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
         }
     }
 }

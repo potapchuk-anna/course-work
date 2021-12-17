@@ -5,7 +5,7 @@ using NpgsqlTypes;
 
 namespace CourseWork.Model
 {
-    enum Type
+    public enum Type
     {
         [PgName("current control")]
         CurrentControl,
@@ -16,7 +16,7 @@ namespace CourseWork.Model
         [PgName("individual work")]
         IndividualWork
     }
-    class Work:ModelBase
+    public class Work:ModelBase
     {
         private int id;
         private string title;
@@ -24,8 +24,8 @@ namespace CourseWork.Model
         private int subjectId;
         private Type type;
         public virtual Subject Subject { get; set; }
-        public virtual Grade Grade { get; set; }
-       
+        public virtual ICollection<Grade> Grades { get; set; }
+
         public int Id
         {
             get { return id; }
@@ -70,6 +70,10 @@ namespace CourseWork.Model
                 type = value;
                 OnPropertyChanged(nameof(Type));
             }
-        }        
+        }
+        public override string ToString()
+        {
+            return $"{title}";
+        }
     }
 }

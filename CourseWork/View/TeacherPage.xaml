@@ -3,6 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:prism="http://prismlibrary.com"
       xmlns:local="clr-namespace:CourseWork.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -16,10 +19,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Margin="0,20,0,0">
-            <MenuItem Name="insert" Header="Insert" Command="{Binding Path=Insert}" CommandParameter = "{Binding ElementName=Table}"/>
+            <MenuItem Name="insert" Header="Insert" Command="{Binding Path=Insert}"/>
             <MenuItem Name="delete" Header="Delete" Command="{Binding Path=Remove}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" />
-            <MenuItem Header="Update" />
-            <MenuItem Name="generate" Header="Generate" Command="{Binding Path=Generate}" CommandParameter = "{Binding ElementName=Table}" Click="generate_Click">
+            <MenuItem Header="Update" Name="update" Command="{Binding Path=Update}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" />
+            <MenuItem Name="generate" Header="Generate" Command="{Binding Path=Generate}">
                 <MenuItem.ToolTip>
                     <ToolTip>
                         Generate
@@ -61,7 +64,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-       
     </Grid>
 
 </Page>

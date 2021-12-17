@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork.View"
         mc:Ignorable="d"
-       Name="generationDialog" Title="GenerateWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+       Name="generationDialog" Title="Generate" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />

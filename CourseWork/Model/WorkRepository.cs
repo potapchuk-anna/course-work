@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CourseWork.Model
 {
-    class WorkRepository:Repository
+    public class WorkRepository:Repository
     {
         public WorkRepository(EducationalSystemContext context) : base(context)
         {
@@ -24,7 +25,7 @@ namespace CourseWork.Model
                     Theme = GenerateString(random.Next(4, 11), random),
                     Subject = subject,
                     SubjectId = subject.Id,
-                    Type = (Type)random.Next(1,5)
+                    Type = (Type)random.Next(0,4)
                 });
             }
             context.SaveChanges();
@@ -51,10 +52,26 @@ namespace CourseWork.Model
             context.SaveChanges();
         }
 
-        public override void Update(ModelBase model)
+        public override void Update(ModelBase model, ModelBase newModel)
         {
-            context.Works.Update((Work)model);
+            var work = model as Work;
+            var newWork = newModel as Work;
+            work.Title = newWork.Title;
+            work.Theme = newWork.Theme;
+            work.Type = newWork.Type;
+            work.SubjectId = newWork.SubjectId;
+            context.Works.Update(work);
             context.SaveChanges();
         }
+
+        public override ObservableCollection<ModelBase> Find(string parametr)
+        {
+            return new ObservableCollection<ModelBase>(GetWorks(parametr));
+        }
+
+        List<Work> GetWorks(string parametr)
+        {
+            return context.Works.Where(d =>d.Id.ToString().StartsWith(parametr)|| d.Title.StartsWith(parametr) || d.Theme.StartsWith(parametr)||d.Subject.Title.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
+        }      
     }
 }

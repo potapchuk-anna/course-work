@@ -5,12 +5,12 @@ using System.Text;
 
 namespace CourseWork.Model
 {
-    class Teacher:ModelBase
+    public class Teacher:ModelBase
     {
         private int id;
         private string name;
         private string surname;
-        public virtual Class Class { get; set; }
+        public virtual ICollection<Class> Classes { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
         public int Id
         {
@@ -44,6 +44,11 @@ namespace CourseWork.Model
        public Teacher()
         {
             Subjects = new List<Subject>();
+        }
+
+        public override string ToString()
+        {
+            return $"{name} {surname}";
         }
     }
 }

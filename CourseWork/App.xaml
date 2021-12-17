@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:CourseWork"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-      
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Footlight MT Light"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
     </Application.Resources>
 </Application>

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
-using  CourseWork.Model;
+using CourseWork.Model;
 using CourseWork.View;
 using System.Windows.Input;
 using System.ComponentModel;
@@ -10,23 +9,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CourseWork.ViewModel
 {
-    class TeacherViewModel
+    class ClassViewModel
     {
-        private TeacherRepository repository;
+        private ClassRepository repository;
 
-        private ObservableCollection<Teacher> _teachersList;
+        private ObservableCollection<Class> _classesList;
 
-        public TeacherViewModel(TeacherRepository repository )
+        public ClassViewModel(ClassRepository repository)
         {
-            //repository.context.Teachers.Load();           
+            repository.context.Classes.Include(s => s.Curator);
             this.repository = repository;
-            _teachersList = repository.context.Teachers.Local.ToObservableCollection();
+            _classesList = ClassList;          
         }
 
-        public ObservableCollection<Teacher> Teachers
+        public ObservableCollection<Class> ClassList
         {
-            get { return _teachersList; }
-            set { _teachersList = value; }
+            get
+            {
+                repository.context.Classes.Load();
+                return repository.context.Classes.Local.ToObservableCollection();
+            }
+        }
+
+        public ObservableCollection<Class> Classs
+        {
+            get { return _classesList; }
+            set { _classesList = value; }
         }
 
         private ICommand mRemover;
@@ -51,10 +59,10 @@ namespace CourseWork.ViewModel
         {
             get
             {
-                TeacherDialog teacherDialog = new TeacherDialog();
+                ClassDialog classDialog = new ClassDialog(repository);
                 if (mInserter == null)
-                {                  
-                    mInserter = new Insert(repository, teacherDialog); 
+                {
+                    mInserter = new Insert(repository, classDialog);
                 }
 
                 return mInserter;
@@ -69,10 +77,10 @@ namespace CourseWork.ViewModel
         {
             get
             {
-                TeacherDialog teacherDialog = new TeacherDialog();
+                ClassDialog classDialog = new ClassDialog(repository);
                 if (mUpdater == null)
                 {
-                    mUpdater = new Update(repository, teacherDialog);
+                    mUpdater = new Update(repository, classDialog);
                 }
 
                 return mUpdater;
@@ -82,13 +90,13 @@ namespace CourseWork.ViewModel
                 mUpdater = value;
             }
         }
-        private ICommand mGenerater;     
+        private ICommand mGenerater;
         public ICommand Generate
         {
             get
             {
                 if (mGenerater == null)
-                {                    
+                {
                     mGenerater = new Generate(repository);
                 }
 
@@ -99,5 +107,14 @@ namespace CourseWork.ViewModel
                 mGenerater = value;
             }
         }
+
+        public Search Search
+        {
+            get
+            {
+                Search search = new Search(repository);              
+                return search;
+            }
+        }       
     }
 }

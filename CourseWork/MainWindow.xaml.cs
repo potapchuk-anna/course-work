@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
 
 namespace CourseWork
 {
@@ -25,6 +26,13 @@ namespace CourseWork
         public MainWindow()
         {
             InitializeComponent();
+            EducationalSystemContext context = EducationalSystemContext.Instance;           
+            context.Classes.Load();       
+            context.Teachers.Load();            
+            context.Subjects.Load();                
+            context.Students.Load();
+            context.Works.Load();
+            context.Grades.Load();
         }        
     }
 }

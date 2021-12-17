@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CourseWork.Model
 {
-    class GradeRepository:Repository
+    public class GradeRepository:Repository
     {
         public GradeRepository(EducationalSystemContext context) : base(context)
         {
@@ -38,15 +39,32 @@ namespace CourseWork.Model
             context.SaveChanges();
         }
 
+        public override ObservableCollection<ModelBase> Find(string parametr)
+        {
+            return new ObservableCollection<ModelBase>(GetGrades(parametr));
+        }
+
+        List<Grade> GetGrades(string parametr)
+        {
+            return context.Grades.Where(d =>d.Id.ToString().StartsWith(parametr)|| d.Student.Name.StartsWith(parametr) || d.Student.Surname.StartsWith(parametr)|| d.Work.Title.StartsWith(parametr)||d.GradeValue.ToString().StartsWith(parametr)).OrderBy(c => c.Id).ToList();
+        }
+
         public override void Insert(ModelBase model)
         {
+            int m = context.Grades.Count();
             context.Grades.Add((Grade)model);
+            int n = context.Grades.Count();
             context.SaveChanges();
         }
 
-        public override void Update(ModelBase model)
+        public override void Update(ModelBase model, ModelBase newModel)
         {
-            context.Grades.Update((Grade)model);
+            var grade = model as Grade;
+            var newGrade = newModel as Grade;
+            grade.WorkId = newGrade.WorkId;
+            grade.GradeValue = newGrade.GradeValue;
+            grade.StudentId = newGrade.StudentId;
+            context.Grades.Update(grade);
             context.SaveChanges();
         }
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CourseWork.Model
 {
-    class Subject: ModelBase
+    public class Subject: ModelBase
     {
         private int id;
         private string title;
@@ -43,5 +43,9 @@ namespace CourseWork.Model
             Works = new List<Work>();
         }
 
+        public override string ToString()
+        {
+            return $"{title}";
+        }
     }
 }

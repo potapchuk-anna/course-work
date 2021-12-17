@@ -16,12 +16,12 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Margin="0,20,0,0">
-            <MenuItem Header="Insert"/>
+            <MenuItem Header="Insert"  Name="insert" Command="{Binding Path=Insert}"/>
             <MenuItem Name="delete" Header="Delete" Command="{Binding Path=Remove}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" />
-            <MenuItem Header="Update" />
-            <MenuItem Header="Generate" />
+            <MenuItem Header="Update"  Name="update" Command="{Binding Path=Update}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" />
+            <MenuItem Header="Generate"  Name="generate" Command="{Binding Path=Generate}" />
             <MenuItem Header="Analysis" />
-            <TextBox Name="search" Width="200">
+            <TextBox Name="search" Width="200" TextChanged="search_TextChanged">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <Style.Resources>
@@ -46,14 +46,14 @@
                 </TextBox.Style>
             </TextBox>
         </Menu>
-        <ListView Name="Table"  Margin="0,40,0,78"  ItemsSource="{Binding Users}"  Height="300" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+        <ListView Name="Table"  Margin="0,40,0,78"  ItemsSource="{Binding Students}"  Height="300" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
             <ListView.View>
                 <GridView x:Name="grdTest">
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"  Width="80"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"  Width="230" />
                     <GridViewColumn   Header="Surname" DisplayMemberBinding="{Binding Surname}" Width="250" />
                     <GridViewColumn   Header="Class" DisplayMemberBinding="{Binding Class}" Width="70" />
-                    <GridViewColumn   Header="Birthdate" DisplayMemberBinding="{Binding Birthdate}" Width="100" />
+                    <GridViewColumn   Header="Birthdate" DisplayMemberBinding="{Binding BirthDate, StringFormat='dd-MM-yyyy'}" Width="100" />
                 </GridView>
             </ListView.View>
         </ListView>

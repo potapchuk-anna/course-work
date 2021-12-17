@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CourseWork.Model;
+using CourseWork.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +20,25 @@ namespace CourseWork.View
     /// </summary>
     public partial class WorkPage : Page
     {
+        private WorkViewModel model;
+
         public WorkPage()
         {
             InitializeComponent();
+            DataContext = new WorkViewModel(new Model.WorkRepository(EducationalSystemContext.Instance));
+            model = (WorkViewModel)DataContext;
+        }
+
+        private void search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(search.Text))
+            {
+                Table.ItemsSource = model.WorkList;
+            }
+            else
+            {
+                Table.ItemsSource = model.Search.Execute(search.Text);
+            }
         }
     }
 }

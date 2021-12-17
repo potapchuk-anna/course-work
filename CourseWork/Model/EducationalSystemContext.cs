@@ -5,13 +5,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CourseWork.Model
 {
-    class EducationalSystemContext:DbContext
+    public class EducationalSystemContext:DbContext
     {
-        public EducationalSystemContext(DbContextOptions<EducationalSystemContext> options)
+        private EducationalSystemContext(DbContextOptions<EducationalSystemContext> options)
             :base(options)
         {
+        }        
+        private static EducationalSystemContext instance;
+        public static EducationalSystemContext Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new EducationalSystemContext();
+                return instance;
+            }
         }
-
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
@@ -27,7 +36,7 @@ namespace CourseWork.Model
                 optionsBuilder.UseNpgsql(connectionString)/*.UseSnakeCaseNamingConvention()*/;
             }
         }
-        public EducationalSystemContext()
+        private EducationalSystemContext()
         {
             Database.EnsureCreated();
         }
@@ -38,25 +47,22 @@ namespace CourseWork.Model
 
             modelBuilder.Entity<Grade>(entity =>
             {
-                entity.Property(e => e.Id)
-                .UseHiLo();
+                entity.Property(e => e.Id);
 
                 entity.HasOne(d => d.Student)
                     .WithMany(p => p.Grades)
                    .HasForeignKey(d => d.StudentId);
 
                 entity.HasOne(d => d.Work)
-                   .WithOne(p => p.Grade)
-                   .HasForeignKey<Grade>(d => d.WorkId);
+                   .WithMany(p => p.Grades)
+                   .HasForeignKey(d => d.WorkId);
             });
             modelBuilder.Entity<Teacher>(entity =>
             {
-                entity.Property(e => e.Id)
-                .UseHiLo();
+                entity.Property(e => e.Id);
 
-                entity.HasOne(d => d.Class)
-                    .WithOne(p => p.Curator)
-                    .HasForeignKey<Class>(d => d.CuratorId);
+                entity.HasMany(d => d.Classes)
+                    .WithOne(p => p.Curator);
 
                 entity.HasMany(d => d.Subjects)
                 .WithOne(p => p.Teacher)
@@ -66,19 +72,21 @@ namespace CourseWork.Model
             });
             modelBuilder.Entity<Work>(entity =>
             {
-                entity.Property(e => e.Id)
-                .UseHiLo();
+                entity.Property(e => e.Id);
 
                 entity.HasOne(d => d.Subject)
                      .WithMany(p => p.Works)
                    .HasForeignKey(d => d.SubjectId);
-                
+
+                entity.HasMany(d => d.Grades)
+                  .WithOne(p => p.Work)
+                  .OnDelete(DeleteBehavior.Cascade);
+
             });
 
             modelBuilder.Entity<Student>(entity =>
             {
-                entity.Property(e => e.Id)
-               .UseHiLo();
+                entity.Property(e => e.Id);
 
                 entity.Property(e => e.BirthDate)
                  .HasColumnType("date");
@@ -95,19 +103,17 @@ namespace CourseWork.Model
 
             modelBuilder.Entity<Class>(entity =>
             {
-                entity.Property(e => e.Id)
-                .UseHiLo();
+                entity.Property(e => e.Id);         
 
                 entity.HasOne(d => d.Curator)
-                    .WithOne(p => p.Class)
-                    .HasForeignKey<Class>(d => d.CuratorId);
+                    .WithMany(p => p.Classes)
+                    .HasForeignKey(d => d.CuratorId);
 
             });
 
             modelBuilder.Entity<Subject>(entity =>
             {
-                entity.Property(e => e.Id)
-                .UseHiLo();
+                entity.Property(e => e.Id);
 
                 entity.HasOne(d => d.Teacher)
                 .WithMany(p => p.Subjects)

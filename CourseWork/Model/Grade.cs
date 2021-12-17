@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CourseWork.Model
 {
-    class Grade: ModelBase
+    public class Grade: ModelBase
     {
         private int id;
         private int workId;
@@ -48,6 +48,10 @@ namespace CourseWork.Model
                 studentId = value;
                 OnPropertyChanged(nameof(StudentId));
             }
+        }
+        public override string ToString()
+        {
+            return $"{grade}";
         }
     }
 }
