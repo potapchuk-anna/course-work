@@ -41,5 +41,10 @@ namespace CourseWork.View
                 Table.ItemsSource = model.Search.Execute(search.Text);
             }
         }
+
+        private void analysis_Click(object sender, RoutedEventArgs e)
+        {
+            model.Analysis();
+        }
     }
 }

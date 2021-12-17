@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -72,6 +73,7 @@ namespace CourseWork.Model
         List<Work> GetWorks(string parametr)
         {
             return context.Works.Where(d =>d.Id.ToString().StartsWith(parametr)|| d.Title.StartsWith(parametr) || d.Theme.StartsWith(parametr)||d.Subject.Title.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
-        }      
+        }
+        
     }
 }

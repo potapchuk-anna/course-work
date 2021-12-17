@@ -122,5 +122,9 @@ namespace CourseWork.Model
 
         }
 
+        internal void Include()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

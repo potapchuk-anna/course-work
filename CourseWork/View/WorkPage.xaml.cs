@@ -40,5 +40,6 @@ namespace CourseWork.View
                 Table.ItemsSource = model.Search.Execute(search.Text);
             }
         }
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -69,6 +70,16 @@ namespace CourseWork.Model
         List<Subject> GetSubjects(string parametr)
         {
             return context.Subjects.Where(d => d.Id.ToString().StartsWith(parametr)||d.Title.StartsWith(parametr) || d.Teacher.Name.StartsWith(parametr) || d.Teacher.Surname.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
+        }
+
+        public Dictionary<string, double> Analysis()
+        {
+            context.Subjects.Include(s => s.Works).ThenInclude(w => w.Grades);
+            return context.Subjects.Select(s => new
+            {
+                Title = s.Title,
+                AvgGrade = s.Works.Any() ? s.Works.Average(w => w.Grades.Any() ? w.Grades.Average(g => g.GradeValue) : 0) : 0
+            }).ToDictionary(o => o.Title, o => o.AvgGrade);
         }
     }
 }

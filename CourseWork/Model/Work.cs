@@ -75,5 +75,9 @@ namespace CourseWork.Model
         {
             return $"{title}";
         }
+        public Work()
+        {
+            Grades = new List<Grade>();
+        }
     }
 }

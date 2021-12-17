@@ -111,5 +111,9 @@ namespace CourseWork.ViewModel
                 return search;
             }
         }
+        public void Analysis()
+        {
+            repository.Analysis();
+        }
     }
 }
