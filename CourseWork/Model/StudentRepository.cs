@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -78,6 +79,21 @@ namespace CourseWork.Model
         List<Student> GetStudent(string parametr)
         {
             return context.Students.Where(d => d.Id.ToString().StartsWith(parametr) || d.Name.StartsWith(parametr) || d.Surname.StartsWith(parametr) || d.Class.Title.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
+        }
+        public Dictionary<int, int> Analysis(Student student)
+        {
+            context.Students.Include(s => s.Grades);
+            var studentGrades = new Dictionary<int, int>();
+            for (int i = 1; i <=12; i++)
+            {
+                studentGrades.Add(i, context.Grades.Where(g => g.GradeValue == i).Where(g => g.Student.Equals(student)).Count());
+            }
+            return studentGrades;
+        }
+
+        public List<Student> FindStudentBySurname(string surname)
+        {
+            return context.Students.Where(s => s.Surname == surname).ToList();
         }
     }
 }

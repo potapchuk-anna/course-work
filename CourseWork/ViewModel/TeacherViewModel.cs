@@ -22,6 +22,14 @@ namespace CourseWork.ViewModel
             this.repository = repository;
             _teachersList = repository.context.Teachers.Local.ToObservableCollection();
         }
+        public ObservableCollection<Teacher> TeacherList
+        {
+            get
+            {
+                repository.context.Teachers.Load();
+                return repository.context.Teachers.Local.ToObservableCollection();
+            }
+        }
 
         public ObservableCollection<Teacher> Teachers
         {
@@ -97,6 +105,14 @@ namespace CourseWork.ViewModel
             set
             {
                 mGenerater = value;
+            }
+        }
+        public Search Search
+        {
+            get
+            {
+                Search search = new Search(repository);
+                return search;
             }
         }
     }

@@ -6,18 +6,42 @@ using Microsoft.EntityFrameworkCore;
 namespace CourseWork.Model
 {
     public class EducationalSystemContext:DbContext
-    {
-        private EducationalSystemContext(DbContextOptions<EducationalSystemContext> options)
-            :base(options)
-        {
-        }        
+    {      
         private static EducationalSystemContext instance;
         public static EducationalSystemContext Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new EducationalSystemContext();
+                {
+                    instance = new EducationalSystemContext("Host=localhost;Port=5432;Database=EducationalSystem;Username=user;Password=12345;CommandTimeout=1000;Timeout=1000");
+                    var result = -1;
+                    using (var command = instance.Database.GetDbConnection().CreateCommand())
+                    {
+                        command.CommandText = "SELECT COUNT(*) FROM pg_publication";
+                        instance.Database.OpenConnection();
+                        using (var reader = command.ExecuteReader())
+                            if (reader.Read())
+                                result = reader.GetInt32(0);
+                        instance.Database.CloseConnection();
+                    }
+
+                    if (result == 0)
+                        instance.Database.ExecuteSqlRaw("CREATE PUBLICATION logical_pub FOR ALL TABLES;");
+
+                    using (var command = instance.Database.GetDbConnection().CreateCommand())
+                    {
+                        command.CommandText = "SELECT COUNT(*) FROM pg_replication_slots";
+                        instance.Database.OpenConnection();
+                        using (var reader = command.ExecuteReader())
+                            if (reader.Read())
+                                result = reader.GetInt32(0);
+                        instance.Database.CloseConnection();
+                    }
+
+                    if (result == 0)
+                        instance.Database.ExecuteSqlRaw("SELECT * FROM pg_create_logical_replication_slot('logical_slot', 'pgoutput');");
+                }                   
                 return instance;
             }
         }
@@ -32,15 +56,36 @@ namespace CourseWork.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = "Host=localhost;Port=5432;Database=EducationalSystem;Username=user;Password=12345;CommandTimeout=1000;Timeout=1000";
-                optionsBuilder.UseNpgsql(connectionString)/*.UseSnakeCaseNamingConvention()*/;
+                optionsBuilder.UseNpgsql(ConnectionString);
             }
         }
-        private EducationalSystemContext()
+        public string ConnectionString { get; set; }
+        public EducationalSystemContext(string connectionString)
         {
+            ConnectionString = connectionString;
             Database.EnsureCreated();
+            
         }
+        public void CreateSubscription()
+        {
+            var result = -1;
 
+            using (var command = this.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = "SELECT COUNT(*) FROM pg_subscription";
+                this.Database.OpenConnection();
+                using (var reader = command.ExecuteReader())
+                    if (reader.Read())
+                        result = reader.GetInt32(0);
+                this.Database.CloseConnection();
+            }
+
+            if (result == 0)
+                this.Database.ExecuteSqlRaw("CREATE SUBSCRIPTION logical_sub\n" +
+                                                "CONNECTION 'host=localhost port=5432 user=user password=12345 dbname=EducationalSystem'\n" +
+                                                "PUBLICATION logical_pub\n" +
+                                                "WITH(create_slot = false, slot_name = 'logical_slot');");
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasPostgresEnum<Type>();

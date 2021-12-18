@@ -21,10 +21,13 @@ namespace CourseWork.View
     /// </summary>
     public partial class TeacherPage : Page
     {
+        private TeacherViewModel model;
+
         public TeacherPage()
         {
             InitializeComponent();
             DataContext = new TeacherViewModel(new Model.TeacherRepository(EducationalSystemContext.Instance));
+            model = (TeacherViewModel)DataContext;
         }
 
         private void generate_Click(object sender, RoutedEventArgs e)
@@ -33,5 +36,23 @@ namespace CourseWork.View
             //generateWindow.ShowDialog();
         }
 
+        private void search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(search.Text))
+            {
+                Table.ItemsSource = model.TeacherList;
+            }
+            else
+            {
+                Table.ItemsSource = model.Search.Execute(search.Text);
+            }
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            Table.ItemsSource = model.TeacherList;
+            MessageBox.Show("Item was deleted.");
+            search.Text = "";
+        }
     }
 }

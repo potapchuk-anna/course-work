@@ -67,5 +67,9 @@ namespace CourseWork.Model
         {
             return context.Teachers.Where(d => d.Id.ToString().StartsWith(parametr)||d.Name.StartsWith(parametr) || d.Surname.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
         }
+        public List<Teacher> FindTeacherBySurname(string surname)
+        {
+            return context.Teachers.Where(s => s.Surname == surname).ToList();
+        }
     }
 }

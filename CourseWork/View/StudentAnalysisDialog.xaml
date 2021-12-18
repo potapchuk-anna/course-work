@@ -1,0 +1,60 @@
+﻿<Window x:Class="CourseWork.View.StudentAnalysisDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork.View"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="StudentAnalysisDialog"  SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto"  />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" FontSize="18" TextAlignment="Center" >Student info</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Amount of 12: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value12" Grid.Column="2" Grid.Row="2" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="2" Text="Amount of 11: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value11" Grid.Column="4" Grid.Row="2" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="3" Text="Amount of 10: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value10" Grid.Column="2" Grid.Row="3" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="3" Text="Amount of 9: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value9" Grid.Column="4" Grid.Row="3" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Amount of 8: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value8" Grid.Column="2" Grid.Row="4" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="4" Text="Amount of 7: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value7" Grid.Column="4" Grid.Row="4" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="Amount of 6: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value6" Grid.Column="2" Grid.Row="5" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="5" Text="Amount of 5: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value5" Grid.Column="4" Grid.Row="5" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="Amount of 4: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value4" Grid.Column="2" Grid.Row="6" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="6" Text="Amount of 3: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value3" Grid.Column="4" Grid.Row="6" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="7" Text="Amount of 2: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value2" Grid.Column="2" Grid.Row="7" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="7" Text="Amount of 1: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="value1" Grid.Column="4" Grid.Row="7" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <WrapPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,15,0,0" >
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
+        </WrapPanel>
+    </Grid>
+</Window>

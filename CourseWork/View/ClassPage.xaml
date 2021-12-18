@@ -17,10 +17,10 @@
         </Grid.RowDefinitions>
         <Menu Margin="0,20,0,0">
             <MenuItem Header="Insert" Name="insert" Command="{Binding Path=Insert}"/>
-            <MenuItem Name="delete" Header="Delete" Command="{Binding Path=Remove}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" />
+            <MenuItem Name="delete" Header="Delete" Command="{Binding Path=Remove}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" Click="delete_Click" />
             <MenuItem Header="Update" Name="update" Command="{Binding Path=Update}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" />
             <MenuItem Header="Generate" Name="generate" Command="{Binding Path=Generate}"/>
-            <MenuItem Header="Analysis" Name="analysis" />
+            <MenuItem Header="Analysis" Name="analysis" Command="{Binding Path=Analysis}" />
             <TextBox Name="search" Width="200" TextChanged="search_TextChanged">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">

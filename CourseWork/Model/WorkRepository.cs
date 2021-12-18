@@ -74,6 +74,10 @@ namespace CourseWork.Model
         {
             return context.Works.Where(d =>d.Id.ToString().StartsWith(parametr)|| d.Title.StartsWith(parametr) || d.Theme.StartsWith(parametr)||d.Subject.Title.StartsWith(parametr)).OrderBy(c => c.Id).ToList();
         }
-        
+
+        public List<Work> FindWorkByTitle(string title)
+        {
+            return context.Works.Where(s => s.Title == title).ToList();
+        }
     }
 }

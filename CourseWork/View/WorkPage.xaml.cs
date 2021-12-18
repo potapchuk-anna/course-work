@@ -40,6 +40,12 @@ namespace CourseWork.View
                 Table.ItemsSource = model.Search.Execute(search.Text);
             }
         }
-        
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            Table.ItemsSource = model.WorkList;
+            MessageBox.Show("Item was deleted.");
+            search.Text = "";
+        }
     }
 }

@@ -119,5 +119,47 @@ namespace CourseWork.ViewModel
                 return search;
             }
         }
+        private ICommand mAnalysis;
+        public ICommand Analysis
+        {
+            get
+            {
+                if (mAnalysis == null)
+                {
+                    mAnalysis = new AnalysisCommand(repository);
+                }
+
+                return mAnalysis;
+            }
+            set
+            {
+                mAnalysis = value;
+            }
+        }
+
+        class AnalysisCommand : ICommand
+        {
+            private StudentRepository studentRepository;
+            public event EventHandler CanExecuteChanged;
+
+            public AnalysisCommand(StudentRepository studentRepository)
+            {
+                this.studentRepository = studentRepository;
+            }
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public void Execute(object parameter)
+            {
+                if(parameter!=null)
+                {
+                    StudentAnalysisDialog dialog = new StudentAnalysisDialog(studentRepository.Analysis((Student)parameter));
+                    dialog.ShowDialog();
+                }
+                if (parameter == null) MessageBox.Show("Choose student to have his/here analysis of grades.");
+            }
+        }
     }
 }

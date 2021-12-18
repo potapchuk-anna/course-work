@@ -67,5 +67,9 @@ namespace CourseWork.Model
             context.Grades.Update(grade);
             context.SaveChanges();
         }
+        public List<Grade> FindGradeByValue(int grade)
+        {
+            return context.Grades.Where(s => s.GradeValue == grade).ToList();
+        }
     }
 }

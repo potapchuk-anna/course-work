@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CourseWork.ViewModel
 {
@@ -24,6 +25,7 @@ namespace CourseWork.ViewModel
             get
             {
                 repository.context.Subjects.Load();
+                repository.context.Subjects.Include(s => s.Teacher);
                 return repository.context.Subjects.Local.ToObservableCollection();
             }
         }
@@ -111,9 +113,44 @@ namespace CourseWork.ViewModel
                 return search;
             }
         }
-        public void Analysis()
+        private ICommand mAnalysis;
+        public ICommand Analysis
         {
-            repository.Analysis();
+            get
+            {
+                if (mAnalysis == null)
+                {
+                    mAnalysis = new AnalysisCommand(repository);
+                }
+
+                return mAnalysis;
+            }
+            set
+            {
+                mAnalysis = value;
+            }
         }
+
+        class AnalysisCommand : ICommand
+        {
+            private SubjectRepository subjectRepository;
+            public event EventHandler CanExecuteChanged;
+
+            public AnalysisCommand(SubjectRepository subjectRepository)
+            {
+                this.subjectRepository = subjectRepository;
+            }
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public void Execute(object parameter)
+            {
+                SubjectAnalysisDialog dialog = new SubjectAnalysisDialog(subjectRepository.Analysis());
+                dialog.ShowDialog();              
+            }
+        }
+
     }
 }

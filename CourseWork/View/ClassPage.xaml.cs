@@ -40,5 +40,13 @@ namespace CourseWork.View
             }
             
         }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            Table.ItemsSource = model.ClassList;
+            MessageBox.Show("Item was deleted.");
+            search.Text = "";
+        }
+
     }
 }

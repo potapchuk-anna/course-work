@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CourseWork.ViewModel
 {
@@ -72,6 +73,46 @@ namespace CourseWork.ViewModel
                 mInserter = value;
             }
         }
+
+        private ICommand mAnalysis;
+        public ICommand Analysis
+        {
+            get
+            {
+                if (mAnalysis == null)
+                {
+                    mAnalysis = new AnalysisCommand(repository);
+                }
+
+                return mAnalysis;
+            }
+            set
+            {
+                mAnalysis = value;
+            }
+        }
+
+        class AnalysisCommand : ICommand
+        {
+            private ClassRepository classRepository;
+            public event EventHandler CanExecuteChanged;
+
+            public AnalysisCommand(ClassRepository classRepository)
+            {
+                this.classRepository = classRepository;
+            }
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public void Execute(object parameter)
+            {
+                ClassAnalysisDialog dialog = new ClassAnalysisDialog(classRepository.Analysis());
+                dialog.ShowDialog();
+            }
+        }
+
         private ICommand mUpdater;
         public ICommand Update
         {

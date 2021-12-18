@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -60,6 +61,19 @@ namespace CourseWork.Model
             classs.CuratorId = newClass.CuratorId;
             context.Classes.Update(classs);
             context.SaveChanges();
+        }
+        public List<Tuple<string, double>> Analysis()
+        {
+            context.Classes.Include(s => s.Students).ThenInclude(w => w.Grades);
+            return context.Classes.Select(s => new Tuple<string, double>
+            (
+                s.Title,
+                s.Students.Any() ? s.Students.Average(w => w.Grades.Any() ? w.Grades.Average(g => g.GradeValue) : 0) : 0
+            )).ToList();
+        }
+        public List<Class> FindClassesByTitle(string title)
+        {
+            return context.Classes.Where(s => s.Title == title).ToList();
         }
     }
 }

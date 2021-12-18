@@ -50,5 +50,11 @@ namespace CourseWork.View
                     break;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Execution execution = new Execution();
+            execution.ShowDialog();
+        }
     }
 }

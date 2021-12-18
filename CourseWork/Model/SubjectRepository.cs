@@ -40,7 +40,7 @@ namespace CourseWork.Model
             return str;
         }
         public override void Delete(ModelBase model)
-        {
+        {      
             context.Subjects.Remove((Subject)model);
             context.SaveChanges();
         }
@@ -80,6 +80,10 @@ namespace CourseWork.Model
                 Title = s.Title,
                 AvgGrade = s.Works.Any() ? s.Works.Average(w => w.Grades.Any() ? w.Grades.Average(g => g.GradeValue) : 0) : 0
             }).ToDictionary(o => o.Title, o => o.AvgGrade);
+        }
+        public List<Subject> FindSubjectsByTitle(string title)
+        {
+            return context.Subjects.Where(s => s.Title == title).ToList();
         }
     }
 }
