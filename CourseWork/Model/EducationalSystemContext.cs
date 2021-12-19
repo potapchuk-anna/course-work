@@ -14,7 +14,7 @@ namespace CourseWork.Model
             {
                 if (instance == null)
                 {
-                    instance = new EducationalSystemContext("Host=localhost;Port=5432;Database=EducationalSystem;Username=user;Password=12345;CommandTimeout=1000;Timeout=1000");
+                    instance = new EducationalSystemContext("Host=localhost;Port=5432;Database=educational_system;Username=user;Password=12345;CommandTimeout=1000;Timeout=1000");
                     var result = -1;
                     using (var command = instance.Database.GetDbConnection().CreateCommand())
                     {
@@ -82,7 +82,7 @@ namespace CourseWork.Model
 
             if (result == 0)
                 this.Database.ExecuteSqlRaw("CREATE SUBSCRIPTION logical_sub\n" +
-                                                "CONNECTION 'host=localhost port=5432 user=user password=12345 dbname=EducationalSystem'\n" +
+                                                "CONNECTION 'host=localhost port=5432 user=user password=12345 dbname=educational_system'\n" +
                                                 "PUBLICATION logical_pub\n" +
                                                 "WITH(create_slot = false, slot_name = 'logical_slot');");
         }

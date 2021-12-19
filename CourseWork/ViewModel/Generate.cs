@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Microsoft.EntityFrameworkCore;
-
+using System.Windows;
 
 namespace CourseWork.ViewModel
 {
@@ -27,9 +27,16 @@ namespace CourseWork.ViewModel
         }
         public void Execute(object parameter)
         {
-            GenerateWindow generateWindow = new GenerateWindow();
-            generateWindow.ShowDialog();
-            repository.DataGeneration(ParseNumber(generateWindow.Number));
+            try
+            {
+                GenerateWindow generateWindow = new GenerateWindow();
+                generateWindow.ShowDialog();
+                repository.DataGeneration(ParseNumber(generateWindow.Number));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error. {ex.Message}");
+            }
         }
     }
 }

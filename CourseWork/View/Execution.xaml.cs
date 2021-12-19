@@ -1,8 +1,10 @@
 ﻿using CourseWork.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -197,6 +199,42 @@ namespace CourseWork.View
             process.Start();
             process.WaitForExit();
             MessageBox.Show("Backup was created");
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                if (!File.Exists(dialog.FileName))
+                {
+                    return;
+                }
+                if (!dialog.FileName.EndsWith(".sql"))
+                {
+                    MessageBox.Show("You should choose sql-file");
+                    return;
+                }
+                EducationalSystemContext.Instance.Database.CloseConnection();
+
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "./../../../../restore.bat",
+                        Arguments = dialog.FileName,
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        Verb = "runas"
+                    }
+                };
+
+                process.Start();
+                process.WaitForExit();
+                MessageBox.Show("Database was restored. You should restart the application.");
+                Application.Current.Shutdown();
+            }
         }
     }
 }

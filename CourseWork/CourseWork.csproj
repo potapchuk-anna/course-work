@@ -7,10 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="photo_2021-12-18_21-42-47.jpg" />
+    <None Remove="View\photo_2021-12-18_21-42-47.jpg" />
+    <None Remove="View\photo_2021-12-18_23-30-14.jpg" />
+    <None Remove="View\photo_2021-12-18_23-30-15.jpg" />
+    <None Remove="View\photo_2021-12-18_23-30-16.jpg" />
+    <None Remove="View\photo_2021-12-18_23-41-39.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="photo_2021-12-18_21-42-47.jpg" />
+    <Resource Include="View\photo_2021-12-18_21-42-47.jpg" />
+    <Resource Include="View\photo_2021-12-18_23-30-14.jpg" />
+    <Resource Include="View\photo_2021-12-18_23-30-15.jpg" />
+    <Resource Include="View\photo_2021-12-18_23-30-16.jpg" />
+    <Resource Include="View\photo_2021-12-18_23-41-39.jpg" />
   </ItemGroup>
 
 </Project>

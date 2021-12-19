@@ -8,7 +8,11 @@
         Title="MainWindow" Height="450" Width="800">
 
     <DockPanel>
-        <Frame Source="/View/NavigationPage.xaml" NavigationUIVisibility="Hidden"></Frame>
+        <Frame Source="/View/MenuPage.xaml" NavigationUIVisibility="Hidden">
+            <Frame.Background>
+                <ImageBrush ImageSource="/photo_2021-12-18_21-42-47.jpg"/>
+            </Frame.Background>
+        </Frame>
     </DockPanel>
     
 </Window>

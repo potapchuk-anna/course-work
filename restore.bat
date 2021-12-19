@@ -1,0 +1,5 @@
+psql --command "UPDATE pg_database SET datallowconn = 'false' WHERE datname = 'educational_system'" "host=localhost port=5432 user=user password=12345"
+psql --command "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'educational_system'" "host=localhost port=5432 user=user password=12345"
+psql --command "DROP DATABASE educational_system" "host=localhost port=5432 user=user password=12345"
+psql --command "CREATE DATABASE educational_system" "host=localhost port=5432 user=user password=12345"
+psql -f %1 "host=localhost port=5432 dbname=educational_system user=user password=12345"

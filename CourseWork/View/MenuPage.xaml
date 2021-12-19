@@ -1,0 +1,103 @@
+﻿<Page x:Class="CourseWork.View.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseWork.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MenuPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Text="Educational control system" Foreground="#FF9D3422"></TextBlock>
+        <Button x:Name="teacherButton" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="150" Height="50" Content="Teachers" Foreground="Black" Click="teacherButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-14.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="studentButton" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="150" Height="50" Content="Students" Foreground="Black" Click="studentButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-14.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="classButton" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center" Width="150" Height="50" Content="Classes" Margin="0,50" Click="classButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-15.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="subjectButton" Grid.Row="2" Grid.Column="4"  HorizontalAlignment="Center" Width="150" Height="50" Content="Subjects" Margin="0,50" Click="subjectButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-15.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="workButton" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="150" Height="50" Content="Works" Click="workButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-16.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="gradeButton" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="150" Height="50" Content="Grades" Click="gradeButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-16.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="settingsButton" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="200" Height="100" Content="Execution" Click="settingsButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="100"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Page>

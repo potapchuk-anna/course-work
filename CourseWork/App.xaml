@@ -8,5 +8,8 @@
             <Setter Property="FontFamily" Value="Footlight MT Light"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="20"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

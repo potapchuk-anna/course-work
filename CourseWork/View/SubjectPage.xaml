@@ -9,13 +9,7 @@
       Title="SubjectPage">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" MinWidth="108"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Menu Margin="0,20,0,0">
+        <Menu BorderBrush="Black" BorderThickness="2" Height="25" VerticalAlignment="Top" Foreground="Black" Background="#FFFFDEF2">
             <MenuItem Header="Insert" Name="insert" Command="{Binding Path=Insert}"/>
             <MenuItem Name="delete" Header="Delete" Command="{Binding Path=Remove}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" Click="delete_Click" />
             <MenuItem Header="Update" Name="update" Command="{Binding Path=Update}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}"/>
@@ -46,7 +40,9 @@
                 </TextBox.Style>
             </TextBox>
         </Menu>
-        <ListView Name="Table"  Margin="0,40,0,78"  ItemsSource="{Binding Subjects}"  Height="300" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+        <Button  x:Name="Menu" Background="#FFFFDEF2" Content="🏚" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,30" Command="NavigationCommands.BrowseBack"></Button>
+        <TextBlock Text="Subjects" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30"></TextBlock>
+        <ListView Name="Table" Margin="20,70" ItemsSource="{Binding Subjects}"  Height="300">
             <ListView.View>
                 <GridView x:Name="grdTest">
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"  Width="100"/>

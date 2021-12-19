@@ -17,6 +17,8 @@ namespace CourseWork.Model
             Random random = new Random();
             List<Work> works = context.Works.ToList();
             List<Student> students = context.Students.ToList();
+            if (works.Count == 0) throw new Exception("Grades cannot be generated without works. Generate works first");
+            if (students.Count == 0) throw new Exception("Grades cannot be generated without students. Generate students first");
             for (int i = 0; i < numberOfData; i++)
             {
                 Work work = works[random.Next(works.Count)];

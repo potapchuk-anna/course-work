@@ -63,10 +63,10 @@ namespace CourseWork.ViewModel
         {
             get
             {              
-                StudentDialog studentDialog = new StudentDialog(repository);
+                StudentDialog studentDialog = new StudentDialog(repository);               
                 if (mInserter == null)
                 {
-                    mInserter = new Insert(repository, studentDialog);
+                     mInserter = new Insert(repository, studentDialog);
                 }
 
                 return mInserter;
@@ -98,9 +98,9 @@ namespace CourseWork.ViewModel
         public ICommand Generate
         {
             get
-            {
+            {              
                 if (mGenerater == null)
-                {
+                {                  
                     mGenerater = new Generate(repository);
                 }
 

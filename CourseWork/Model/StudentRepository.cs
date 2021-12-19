@@ -17,6 +17,7 @@ namespace CourseWork.Model
         {
             Random random = new Random();
             List<Class> classes = context.Classes.ToList();
+            if (classes.Count == 0) throw new Exception("Students cannot be generated without classes");
             for (int i = 0; i < numberOfData; i++)
             {
                 Class form = classes[random.Next(classes.Count)];
@@ -55,7 +56,8 @@ namespace CourseWork.Model
 
         public override void Insert(ModelBase model)
         {
-            context.Students.Add((Student)model);
+            Student student = model as Student;
+            context.Students.Add(student);
             context.SaveChanges();
         }
 

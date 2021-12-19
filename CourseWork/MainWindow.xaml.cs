@@ -33,7 +33,7 @@ namespace CourseWork
             context.Students.Load();
             context.Works.Load();
             context.Grades.Load();
-            EducationalSystemContext context1 = new EducationalSystemContext("Host=localhost;Port=5432;Database=NewEducationalSystem;Username=user;Password=12345;CommandTimeout=1000;Timeout=1000");
+            EducationalSystemContext context1 = new EducationalSystemContext("Host=localhost;Port=5432;Database=new_educational_system;Username=user;Password=12345;CommandTimeout=1000;Timeout=1000");
             context1.CreateSubscription();
         }        
     }

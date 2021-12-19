@@ -17,6 +17,7 @@ namespace CourseWork.Model
         {
             Random random = new Random();
             List<Teacher> curators = context.Teachers.ToList();
+            if (curators.Count == 0) throw new Exception("Classes cannot be generated without teachers. Generate teachers first");
             for (int i = 0; i < numberOfData; i++)
             {
                 Teacher curator = curators[random.Next(curators.Count)];

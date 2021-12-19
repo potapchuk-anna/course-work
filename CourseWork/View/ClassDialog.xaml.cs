@@ -59,10 +59,14 @@ namespace CourseWork.View
             {
                 MessageBox.Show("Error. Class cannot be inserted, because teachers are not created");
                 return;
-            }
+            }            
             else if (String.IsNullOrEmpty(titleBox.Text))
             {
                 MessageBox.Show("Error. Class`es title cannot be null."); return;
+            }
+            else if(titleBox.Text.Split("-").Length!=2|| !int.TryParse(titleBox.Text.Split("-")[0],out int cl))
+            {
+                MessageBox.Show("Error. Class`es title has wrong format."); return;
             }
             else if (String.IsNullOrEmpty(teacherBox.Text))
             {

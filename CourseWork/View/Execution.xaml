@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Execution" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-16.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto"  />
@@ -22,8 +25,20 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="1" Grid.Row="1" FontSize="18" TextAlignment="Center" >Database settings</TextBlock>
-        <Button Grid.Column="1" Grid.Row="2" Content="Indexes" Width="100" Margin="10,10" Click="Button_Click"></Button>
-        <Button Grid.Column="1" Grid.Row="3" Content="Backup" Width="100" Margin="10,10" Click="Button_Click_1"></Button>
-        <Button Grid.Column="1" Grid.Row="4" Content="Restore" Width="100" Margin="10,10" Click="Button_Click_2"></Button>
+        <Button Grid.Column="1" Grid.Row="2" Content="Indexes" Width="100" Margin="10,10" Click="Button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="3" Content="Backup" Width="100" Margin="10,10" Click="Button_Click_1">
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="4" Content="Restore" Width="100" Margin="10,10" Click="Button_Click_2">
+            <Button.Background>
+                <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

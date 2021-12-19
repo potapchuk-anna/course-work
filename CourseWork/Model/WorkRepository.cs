@@ -17,6 +17,7 @@ namespace CourseWork.Model
         {
             Random random = new Random();
             List<Subject> subjects = context.Subjects.ToList();
+            if (subjects.Count == 0) throw new Exception("Works cannot be generated without subjects. Generate subjects first");
             for (int i = 0; i < numberOfData; i++)
             {
                 Subject subject = subjects[random.Next(subjects.Count)];

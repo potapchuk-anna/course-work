@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:CourseWork.View"
         mc:Ignorable="d"
        Name="generationDialog" Title="Generate" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-16.jpg"/>
+    </Window.Background>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -16,8 +19,14 @@
         <TextBox Name="numberBox" Grid.Row="1" MinWidth="250"></TextBox>
 
         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
-            <Button IsCancel="True" MinWidth="60">Cancel</Button>
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+                </Button.Background> OK</Button>
+            <Button IsCancel="True" MinWidth="60">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+                </Button.Background> Cancel</Button>
         </WrapPanel>
     </Grid>
 </Window>

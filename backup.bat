@@ -1,1 +1,1 @@
-pg_dump "host = localhost port = 5432 dbname = EducationalSystem user = user password = 12345" > ./../../../../Backup/backup%1.sql
+pg_dump "host = localhost port = 5432 dbname = educational_system user = user password = 12345" > ./../../../../Backup/backup%1.sql

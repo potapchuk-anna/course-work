@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="GradeDialog" Name="gradeDialog" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="GradeDialog_Loaded">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-16.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto"  />
@@ -22,7 +25,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" TextAlignment="Center" >Insert teacher</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" TextAlignment="Center" >Grade</TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="2" Text="Choose grade: " Margin="10,20"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
         <ComboBox Name="gradeBox" Grid.Column="2" Grid.Row="2"  Width="70" Height="20" HorizontalAlignment="Left"></ComboBox>
         <TextBlock Grid.Column="1" Grid.Row="3" Text="Choose type of work: " Margin="10,20"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
@@ -30,8 +33,14 @@
         <TextBlock Grid.Column="1" Grid.Row="4" Text="Choose student: " Margin="10,20"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
         <ComboBox Name="studentBox" Grid.Column="2" Grid.Row="4"  Width="180" Height="20"></ComboBox>
         <WrapPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,15,0,0" >
-            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
-            <Button IsCancel="True" MinWidth="60">Cancel</Button>
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+                </Button.Background> OK</Button>
+            <Button IsCancel="True" MinWidth="60">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+                </Button.Background> Cancel</Button>
         </WrapPanel>
     </Grid>
 </Window>
