@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         Title="StudentAnalysisDialog"  SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/View/photo_2021-12-18_23-30-16.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto"  />
@@ -54,7 +57,10 @@
         <TextBlock Grid.Column="3" Grid.Row="7" Text="Amount of 1: " Margin="10,10"  TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
         <TextBlock x:Name="value1" Grid.Column="4" Grid.Row="7" Margin="10,10"  TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
         <WrapPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,15,0,0" >
-            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/photo_2021-12-18_23-41-39.jpg"/>
+                </Button.Background> OK</Button>
         </WrapPanel>
     </Grid>
 </Window>

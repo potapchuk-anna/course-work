@@ -16,14 +16,7 @@
             <MenuItem Name="insert" Header="Insert" Command="{Binding Path=Insert}"/>
             <MenuItem Name="delete" Header="Delete" Command="{Binding Path=Remove}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" Click="delete_Click" />
             <MenuItem Header="Update" Name="update" Command="{Binding Path=Update}" CommandParameter = "{Binding ElementName=Table, Path=SelectedItem}" />
-            <MenuItem Name="generate" Header="Generate" Command="{Binding Path=Generate}">
-                <MenuItem.ToolTip>
-                    <ToolTip>
-                        Generate
-                    </ToolTip>
-                </MenuItem.ToolTip>
-            </MenuItem>
-            <MenuItem Header="Analysis" />
+            <MenuItem Name="generate" Header="Generate" Command="{Binding Path=Generate}"></MenuItem>
             <TextBox Name="search" Width="200" TextChanged="search_TextChanged">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">

@@ -26,6 +26,17 @@ namespace CourseWork.View
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
+            int n = 0;
+            if(!int.TryParse(numberBox.Text,out n))
+            {
+                MessageBox.Show("You should enter the number.");
+                return;
+            }
+            else if(n<0)
+            {
+                MessageBox.Show("Number should be positive.");
+                return;
+            }
             this.DialogResult = true;
         }
 
