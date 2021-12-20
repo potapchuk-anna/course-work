@@ -32,8 +32,29 @@ namespace CourseWork.View
             {
                 new ColumnSeries()
                 {
-                    Title = "Index analysis",
-                    Values = new ChartValues<long>(time.Values.ToList())
+                    Title = "Without indexes",
+                    Values = new ChartValues<long>()
+                    {
+                        time["students"],
+                        time["works"],
+                        time["grades"],
+                        time["teachers"],
+                        time["classes"],
+                        time["subjects"]
+                    }                  
+                },
+                 new ColumnSeries()
+                {
+                    Title = "With indexes",
+                    Values = new ChartValues<long>()
+                    {
+                        time["students_index"],
+                        time["works_index"],
+                        time["grades_index"],
+                        time["teachers_index"],
+                        time["classes_index"],
+                        time["subjects_index"]
+                    }
                 }
 
             };
